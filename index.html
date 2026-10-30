@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#10243a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="description" content="Hill Climb Racing 3 - a touch-first hill climbing adventure.">
+  <title>Hill Climb Racing 3</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23ffc43d'/%3E%3Ctext x='32' y='43' font-family='Arial Black,sans-serif' font-size='25' text-anchor='middle' fill='%233d2408'%3EHC%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <svg class="svg-defs" aria-hidden="true">
+    <symbol id="i-coin" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9.5" fill="#ffc93c"/>
+      <circle cx="12" cy="12" r="7.2" fill="none" stroke="#e99a18" stroke-width="1.4"/>
+      <path d="M14.6 8.5c-.6-.8-1.6-1.2-2.7-1.2-1.7 0-2.8.9-2.8 2.2 0 1.5 1.4 1.9 2.8 2.2 1.2.3 1.7.5 1.7 1.1 0 .6-.6 1-1.5 1-1 0-1.8-.4-2.3-1.1l-1.2 1.2c.8 1 2 1.5 3.4 1.5 1.9 0 3.1-.9 3.1-2.4 0-1.5-1.3-2-2.8-2.3-1.1-.2-1.7-.4-1.7-1 0-.5.5-.8 1.3-.8.7 0 1.3.3 1.7.8z" fill="#9c5a06"/>
+    </symbol>
+    <symbol id="i-fuel" viewBox="0 0 24 24">
+      <path d="M5 3.5h9a1.5 1.5 0 0 1 1.5 1.5v15H3.5V5A1.5 1.5 0 0 1 5 3.5Z" fill="#eaf2f8" stroke="#8fa8b8" stroke-width="1.2"/>
+      <path d="M6 5h7v4H6z" fill="#f0a53a"/>
+      <path d="M6.5 12h6v6h-6z" fill="#d6e3ea"/>
+      <path d="M15.5 7.5h2.8l2.2 2.6v6.2a2.2 2.2 0 0 1-4.4 0V13h-1.1" fill="none" stroke="#8fa8b8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M3.5 20h13" stroke="#6f8797" stroke-width="1.5" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><rect x="6" y="4" width="4.5" height="16" rx="1.4" fill="currentColor"/><rect x="13.5" y="4" width="4.5" height="16" rx="1.4" fill="currentColor"/></symbol>
+    <symbol id="i-sound" viewBox="0 0 24 24"><path d="M4 9.5v5h3.4l4.6 3.8V5.7L7.4 9.5H4Z" fill="currentColor"/><path d="M15.2 8.4a5 5 0 0 1 0 7.2M17.8 5.9a8.4 8.4 0 0 1 0 12.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-muted" viewBox="0 0 24 24"><path d="M4 9.5v5h3.4l4.6 3.8V5.7L7.4 9.5H4Z" fill="currentColor"/><path d="m15.5 9.5 5 5m0-5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="m3.5 11.4 8.5-7 8.5 7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 10.3V20h13v-9.7M9.4 20v-5.3h5.2V20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></symbol>
+    <symbol id="i-retry" viewBox="0 0 24 24"><path d="M19.4 9A8 8 0 1 0 20 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M19.8 3.8v5.4h-5.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-gas" viewBox="0 0 32 32"><path d="M7 25V8.5A3.5 3.5 0 0 1 10.5 5h6A3.5 3.5 0 0 1 20 8.5V25" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><path d="M5.5 25h16M10 9h7v5h-7z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="m20 12 4.4-2.4M24.8 8.2l2.4 4.1M27.2 12.3V20a3 3 0 0 1-6 0v-2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-brake" viewBox="0 0 32 32"><circle cx="16" cy="16" r="10.2" fill="none" stroke="currentColor" stroke-width="2.6"/><circle cx="16" cy="16" r="3.2" fill="currentColor"/><path d="M16 3.8v4.4M16 23.8v4.4M3.8 16h4.4M23.8 16h4.4M7.4 7.4l3.1 3.1M21.5 21.5l3.1 3.1M24.6 7.4l-3.1 3.1M10.5 21.5l-3.1 3.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-tilt" viewBox="0 0 24 24"><rect x="7" y="2.8" width="10" height="18.4" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10.5 18.7h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="m3.6 8.4-1.4 1.4 1.4 1.4M20.4 8.4l1.4 1.4-1.4 1.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 4h8v4.2a4 4 0 0 1-8 0V4Z" fill="currentColor" opacity=".9"/><path d="M8 5H4.8v1.8A3.2 3.2 0 0 0 8 10M16 5h3.2v1.8A3.2 3.2 0 0 1 16 10M12 12.2V17M8.5 20h7M10 17h4l1 3H9l1-3Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-speed" viewBox="0 0 24 24"><path d="M4.4 18a8.6 8.6 0 1 1 15.2 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="m12 14 4.5-4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="14" r="1.8" fill="currentColor"/></symbol>
+  </svg>
+
+  <div id="app">
+    <canvas id="gameCanvas" aria-label="Hill Climb Racing 3 game area"></canvas>
+    <div class="screen-grain" aria-hidden="true"></div>
+
+    <section id="menu" class="screen menu">
+      <header class="menu-top">
+        <div class="brand">
+          <span class="brand-mark">HC</span>
+          <span class="brand-type"><b>HILL CLIMB</b><small>RACING 3</small></span>
+        </div>
+        <div class="top-actions">
+          <div class="wallet-pill" title="Coins">
+            <svg class="icon"><use href="#i-coin"></use></svg>
+            <span id="menuCoins">0</span>
+          </div>
+          <button id="menuSound" class="icon-button" type="button" aria-label="Toggle sound">
+            <svg class="icon"><use id="menuSoundIcon" href="#i-sound"></use></svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="menu-main">
+        <div class="hero-copy">
+          <div class="season-tag"><i></i> SEASON 1 <span>COUNTRYSIDE</span></div>
+          <h1><span>HILL CLIMB</span><strong>RACING <em>3</em></strong></h1>
+          <p class="hero-sub">Grip it. Send it. Don't spill the fuel.<br>A physics-powered climb through the backcountry.</p>
+          <div class="hero-actions">
+            <button id="playBtn" class="play-button" type="button" aria-label="Play now">
+              <span class="play-glyph">▶</span>
+              <span class="play-copy"><b>PLAY NOW</b><small>Tap to hit the hills</small></span>
+            </button>
+            <div class="best-chip">
+              <svg class="icon"><use href="#i-trophy"></use></svg>
+              <span><small>BEST RUN</small><b><span id="menuBest">0</span> m</b></span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="garage-card" aria-label="Garage">
+          <div class="garage-top">
+            <div>
+              <span class="micro-label">GARAGE</span>
+              <h2 id="vehicleName">Hill Jeep</h2>
+            </div>
+            <div class="carousel-nav">
+              <button id="prevVehicle" class="round-button small" type="button" aria-label="Previous vehicle">
+                <svg class="icon flip"><use href="#i-chevron"></use></svg>
+              </button>
+              <span id="vehicleCount">1 / 3</span>
+              <button id="nextVehicle" class="round-button small" type="button" aria-label="Next vehicle">
+                <svg class="icon"><use href="#i-chevron"></use></svg>
+              </button>
+            </div>
+          </div>
+          <p id="vehicleDesc" class="vehicle-desc"></p>
+          <div class="stat-grid">
+            <div class="stat-row"><span>SPEED</span><div class="stat-pips" data-stat="speed"></div></div>
+            <div class="stat-row"><span>POWER</span><div class="stat-pips" data-stat="power"></div></div>
+            <div class="stat-row"><span>GRIP</span><div class="stat-pips" data-stat="grip"></div></div>
+          </div>
+          <div class="garage-footer">
+            <div class="vehicle-price"><svg class="icon"><use href="#i-coin"></use></svg><span id="vehiclePrice">OWNED</span></div>
+            <button id="vehicleAction" class="garage-action" type="button">SELECTED</button>
+          </div>
+        </aside>
+      </main>
+
+      <footer class="menu-bottom">
+        <div class="control-card">
+          <button id="tiltToggle" class="tilt-toggle" type="button" role="switch" aria-checked="false">
+            <span class="toggle-track"><span class="toggle-thumb"></span></span>
+            <span class="tilt-copy"><b>Tilt controls</b><small id="tiltStatus">Off · optional accelerometer</small></span>
+            <svg class="icon tilt-icon"><use href="#i-tilt"></use></svg>
+          </button>
+          <p class="key-hint"><kbd>←</kbd> brake <span>·</span> <kbd>→</kbd> gas <span>·</span> <kbd>P</kbd> pause</p>
+        </div>
+        <div class="tip-card">
+          <span class="micro-label">TRAIL NOTE</span>
+          <p>Collect fuel cans, chain backflips in the air, and keep the driver's helmet off the dirt.</p>
+        </div>
+      </footer>
+    </section>
+
+    <section id="hud" class="hud is-hidden" aria-label="Game status">
+      <div class="hud-left">
+        <div id="fuelCard" class="fuel-card">
+          <div class="fuel-head">
+            <span><svg class="icon"><use href="#i-fuel"></use></svg> FUEL</span>
+            <b id="fuelValue">100%</b>
+          </div>
+          <div class="fuel-track"><i id="fuelFill"></i></div>
+        </div>
+        <div class="speed-card">
+          <svg class="icon"><use href="#i-speed"></use></svg>
+          <span><b id="speedValue">0</b><small>KM/H</small></span>
+        </div>
+      </div>
+      <div class="hud-center">
+        <div class="distance-value"><span id="distanceValue">0</span><small>m</small></div>
+        <div class="best-line">BEST <b id="hudBest">0</b> m</div>
+      </div>
+      <div class="hud-right">
+        <div class="run-coins"><svg class="icon"><use href="#i-coin"></use></svg><span id="runCoins">0</span></div>
+        <button id="pauseBtn" class="round-button" type="button" aria-label="Pause game">
+          <svg class="icon"><use href="#i-pause"></use></svg>
+        </button>
+      </div>
+      <div id="airBadge" class="air-badge is-hidden">AIR TIME</div>
+    </section>
+
+    <section id="touchControls" class="touch-controls is-hidden" aria-label="Driving controls">
+      <button id="brakeBtn" class="pedal pedal-brake" type="button" aria-label="Brake">
+        <span class="pedal-glow"></span>
+        <svg class="pedal-icon"><use href="#i-brake"></use></svg>
+        <span class="pedal-label">BRAKE</span>
+      </button>
+      <div class="control-spacer">
+        <div id="tiltMeter" class="tilt-meter is-hidden"><span>LEVEL</span><i id="tiltNeedle"></i></div>
+      </div>
+      <button id="gasBtn" class="pedal pedal-gas" type="button" aria-label="Gas">
+        <span class="pedal-glow"></span>
+        <svg class="pedal-icon"><use href="#i-gas"></use></svg>
+        <span class="pedal-label">GAS</span>
+      </button>
+    </section>
+
+    <div id="toastLayer" class="toast-layer" aria-live="polite"></div>
+
+    <section id="pauseOverlay" class="modal is-hidden" aria-label="Paused">
+      <div class="modal-card pause-card">
+        <span class="micro-label">TAKE A BREATHER</span>
+        <h2>PAUSED</h2>
+        <p>The hills aren't going anywhere.</p>
+        <div class="modal-actions">
+          <button id="resumeBtn" class="primary-button" type="button">RESUME</button>
+          <button id="restartBtn" class="secondary-button" type="button"><svg class="icon"><use href="#i-retry"></use></svg> RESTART</button>
+          <button id="pauseMenuBtn" class="secondary-button" type="button"><svg class="icon"><use href="#i-home"></use></svg> GARAGE</button>
+        </div>
+        <button id="pauseSound" class="text-button" type="button">SOUND: ON</button>
+      </div>
+    </section>
+
+    <section id="gameOverOverlay" class="modal is-hidden" aria-label="Run complete">
+      <div class="modal-card result-card">
+        <span id="resultLabel" class="micro-label">RUN COMPLETE</span>
+        <h2 id="resultTitle">OUT OF FUEL</h2>
+        <p id="resultMessage">The tank ran dry. Grab more cans next time.</p>
+        <div class="result-grid">
+          <div><small>DISTANCE</small><b><span id="resultDistance">0</span> m</b></div>
+          <div><small>COINS</small><b class="gold"><svg class="icon"><use href="#i-coin"></use></svg><span id="resultCoins">0</span></b></div>
+          <div><small>BEST</small><b><span id="resultBest">0</span> m</b></div>
+        </div>
+        <div id="newBest" class="new-best is-hidden">NEW PERSONAL BEST</div>
+        <div class="modal-actions">
+          <button id="retryBtn" class="primary-button" type="button">TRY AGAIN</button>
+          <button id="garageBtn" class="secondary-button" type="button"><svg class="icon"><use href="#i-home"></use></svg> GARAGE</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
